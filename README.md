@@ -7,6 +7,6 @@ Từ dữ liệu đồng bộ trên thinkspeak. Dữ liệu được truy xuất
 Từ đó có thể theo dõi và lên kế hoạch tăng năng suất cây trồng.
 
 Công nghệ sử dụng : 
-> Ngôn ngữ lập trình: nodejs
-> Cơ sở dữ liệu: sqllite3
-> Thư viên giao diện: bootstrap5
+1. Ngôn ngữ lập trình: nodejs
+2. Cơ sở dữ liệu: sqllite3
+3. Thư viện giao diện: bootstrap5
