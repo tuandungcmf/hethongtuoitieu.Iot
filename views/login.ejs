@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Đăng nhập</title>
+        <link rel="stylesheet" href="css/login.css">
+	</head>
+	<body>
+		<div class="login-form">
+			<h1>ĐĂNG NHẬP HỆ THỐNG SmartAGRI</h1>
+			<form class="p-3" action="auth" method="POST">
+				<label>Tên người dùng:</label>
+				<input type="text" name="username" placeholder="Username" required>
+				<label>Mật khẩu:</label>
+				<input type="password" name="password" placeholder="Password" required>
+				<input type="submit" value="Đăng nhập">
+			</form>
+			<div class="pt30">
+				<span>Tài khoản dùng thử: <strong>admin/1234</strong></span>
+			</div>
+		</div>
+	</body>
+</html>

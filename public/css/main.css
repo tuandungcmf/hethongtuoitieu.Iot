@@ -1,0 +1,19 @@
+section#content{
+    min-height: 508px;
+}
+.navbar{
+    background-color: #e4ffea!important;
+}
+.about{
+    background-color: #fceacd21;
+}
+footer{
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-bottom: 0;
+}
+.do-am-dat{
+    display: block;
+    width: 400px;
+    height: 200px;    
+}

@@ -1,0 +1,75 @@
+<%- include("_header") -%>
+
+<div class="row">
+    <div class="col p-3">
+        <h2>DỮ LIỆU TRONG THÁNG QUA</h2>
+    </div>
+    
+</div>
+<div class="row">
+        <div class="col">
+            <canvas id="do-am-dat" width="200" height="200"></canvas>
+        </div>
+        <div class="col">
+            <canvas id="do-am-kk" width="200" height="200"></canvas>
+        </div>
+</div>
+<div class="row">
+    <div class="col">
+        <canvas id="nhiet-do-kk" width="200" height="200"></canvas>
+    </div>
+    <div class="col">
+        <canvas id="trang-thai-bom" width="400" height="400"></canvas>
+    </div>
+</div>
+
+<script>
+    let doAmDatTimes = [<% feeds.forEach(function(feed) { %>'<%= moment(feed.created_at).format('D/M/YY HH:MM') %>',<% }); %>];
+    let doAmDatDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field1 %>',<% }); %>];
+    let doAmKkDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field2 %>',<% }); %>];
+    let nhietDoDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field3 %>',<% }); %>];
+    
+    const doAmDatctx = document.getElementById('do-am-dat');
+    const doAmKkctx = document.getElementById('do-am-kk');
+    const nhietDoctx = document.getElementById('nhiet-do-kk');
+    const bomctx = document.getElementById('trang-thai-bom');
+    const doAmDat = new Chart(doAmDatctx, {
+        type: 'line',
+        data: {
+            labels: doAmDatTimes, //thoi gian
+            datasets: [{
+                label: 'Độ ẩm đất',
+                data: doAmDatDatas,//du lieu
+                backgroundColor: ['rgb(88, 0, 0)','rgb(88, 0, 0)'],
+                borderColor: ['rgb(255, 204, 204)','rgb(255, 204, 204)'],
+                borderWidth: 1}]
+        },options: {scales: {y: {beginAtZero: true}}}
+    });
+    const doAmKk = new Chart(doAmKkctx, {
+        type: 'line',
+        data: {
+            labels: doAmDatTimes, //thoi gian
+            datasets: [{
+                label: 'Độ ẩm không khí',
+                data: doAmKkDatas,//du lieu
+                backgroundColor: ['rgb(0, 102, 255)','rgb(0, 102, 255)'],
+                borderColor: ['rgb(204, 224, 255)','rgb(204, 224, 255)'],
+                borderWidth: 1}]
+        },options: {scales: {y: {beginAtZero: true}}}
+    });
+    const nhietdokk = new Chart(nhietDoctx, {
+        type: 'line',
+        data: {
+            labels: doAmDatTimes, //thoi gian
+            datasets: [{
+                label: 'Nhiệt độ không khí',
+                data: nhietDoDatas,//du lieu
+                backgroundColor: ['rgb(204, 0, 0)','rgb(204, 0, 0)'],
+                borderColor: ['rgb(255, 204, 204)','rgb(255, 204, 204)'],
+                borderWidth: 1}]
+        },options: {scales: {y: {beginAtZero: true}}}
+    });
+</script>
+
+
+<%- include("_footer") -%>

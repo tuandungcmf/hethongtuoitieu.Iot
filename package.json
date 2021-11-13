@@ -1,0 +1,22 @@
+{
+  "name": "tuoitieusystem",
+  "version": "1.0.0",
+  "description": "He thong tuoi tieu tu dong cua truong PT DTNT THCS Quy Hop",
+  "main": "main.js",
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nguyen thi thuy",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "moment": "^2.29.1",
+    "sqlite3": "^5.0.2"
+  }
+}
