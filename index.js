@@ -25,7 +25,7 @@ app.use('/management',management);
 app.use('/auth',auth);
 
 app.listen(3000, () => { 
-    console.log("Server started (http://localhost:3000/) !");
+    console.log("Máy chủ đang hoạt động với địa chỉ (http://localhost:3000/) !");
 });
 
 app.get('/login', function(req,res){
@@ -34,7 +34,6 @@ app.get('/login', function(req,res){
 
 app.get('/', function(req, res) {
 	if (req.session.loggedin) {
-		console.log(req.session)
 		res.render('index',{name: req.session.username});
 	} else {
 		res.render('login');
@@ -42,18 +41,36 @@ app.get('/', function(req, res) {
 	res.end();
 });
 
+//GET /real?1547368
 app.get('/real', async(req, res) => {
+	// khởi tạo đối tượng thời gian
+	let date_ob = new Date();
+
+	// tháng hiện tại
+	let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+	// năm hiện tại
+	let year = date_ob.getFullYear();
+
+	// ngày cuối cùng của tháng
+	var lastDayOfMonth = new Date(date_ob.getFullYear(), date_ob.getMonth()+1, 0);
+
+	let startDate = year+"-"+month+"-01";
+	let endDate =year+"-"+month+"-"+lastDayOfMonth;
+	let channelId= 1547368 //req.query.channelId;
+
 	if (req.session.loggedin) {
 		try {
 			const response = await axios({
-				url: "https://api.thingspeak.com/channels/1547368/feeds.json?api_key=P2HTP6ZOLAC6NJ5A&start=2021-11-01%2000:00:00&end=2021-11-05%2024:00:00&timezone=Asia%2FBangkok",
+				url: "https://api.thingspeak.com/channels/"+channelId+"/feeds.json?api_key=P2HTP6ZOLAC6NJ5A&start="+startDate+" 00:00:00&end="+endDate+" 24:00:00&timezone=Asia/Bangkok",
 				method: "get",
 			});
 			var feeds = response.data.feeds
 			res.render('real', {
 				feeds: feeds,
 				moment: moment,
-				name: req.session.username
+				name: req.session.username,
+				month: month
 			});
 		} catch (err) {
 			res.status(500).json({ message: err });

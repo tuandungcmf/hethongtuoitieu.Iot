@@ -8,7 +8,7 @@ module.exports = {
       const dao = new AppDAO('./database.sqlite3')
       const channelRepo = new ChannelRepository(dao)
       const feedsRepo = new FeedsRepository(dao)
-      const channel = [{ channelId: 18,title: 'Tiêu đề 1', position:'home', description:'in the garden' }]
+      const channel = [{ channelId: 1547368,title: 'Khu vực 1', position:'Vườn', description:'Khu vực 1 trong vườn' }]
       let channelId = channel[0].channelId
 
       channelRepo.createTable()

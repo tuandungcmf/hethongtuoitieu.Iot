@@ -2,24 +2,24 @@
 
 <div class="row">
     <div class="col p-3">
-        <h2>DỮ LIỆU TRONG THÁNG QUA</h2>
+        <h2>DỮ LIỆU TRONG THÁNG <%= month %></h2>
     </div>
     
 </div>
-<div class="row">
+<div class="row mga">
         <div class="col">
-            <canvas id="do-am-dat" width="200" height="200"></canvas>
+            <canvas id="do-am-dat" width="500" height="300"></canvas>
         </div>
         <div class="col">
-            <canvas id="do-am-kk" width="200" height="200"></canvas>
+            <canvas id="do-am-kk" width="500" height="300"></canvas>
         </div>
 </div>
-<div class="row">
+<div class="row mga">
     <div class="col">
-        <canvas id="nhiet-do-kk" width="200" height="200"></canvas>
+        <canvas id="nhiet-do-kk" width="500" height="300"></canvas>
     </div>
     <div class="col">
-        <canvas id="trang-thai-bom" width="400" height="400"></canvas>
+        <canvas id="trang-thai-bom" width="500" height="300"></canvas>
     </div>
 </div>
 
@@ -28,11 +28,12 @@
     let doAmDatDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field1 %>',<% }); %>];
     let doAmKkDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field2 %>',<% }); %>];
     let nhietDoDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field3 %>',<% }); %>];
+    let bomDatas = [<% feeds.forEach(function(feed) { %>'<%- escape(feed.field4).replace(/\n/g, '\n') %>',<% }); %>];
     
     const doAmDatctx = document.getElementById('do-am-dat');
     const doAmKkctx = document.getElementById('do-am-kk');
     const nhietDoctx = document.getElementById('nhiet-do-kk');
-    const bomctx = document.getElementById('trang-thai-bom');
+    const tinhTrangBomctx = document.getElementById('trang-thai-bom');
     const doAmDat = new Chart(doAmDatctx, {
         type: 'line',
         data: {
@@ -41,9 +42,12 @@
                 label: 'Độ ẩm đất',
                 data: doAmDatDatas,//du lieu
                 backgroundColor: ['rgb(88, 0, 0)','rgb(88, 0, 0)'],
-                borderColor: ['rgb(255, 204, 204)','rgb(255, 204, 204)'],
+                borderColor: ['rgb(153, 51, 51)','rgb(153, 51, 51)'],
                 borderWidth: 1}]
-        },options: {scales: {y: {beginAtZero: true}}}
+            },options: {
+                responsive: false,
+                scales: {x: {ticks: {font: {size: 9}}}}
+            }
     });
     const doAmKk = new Chart(doAmKkctx, {
         type: 'line',
@@ -55,7 +59,10 @@
                 backgroundColor: ['rgb(0, 102, 255)','rgb(0, 102, 255)'],
                 borderColor: ['rgb(204, 224, 255)','rgb(204, 224, 255)'],
                 borderWidth: 1}]
-        },options: {scales: {y: {beginAtZero: true}}}
+        },options: {
+            responsive: false,
+            scales: {x: {ticks: {font: {size: 9}}}}
+        }
     });
     const nhietdokk = new Chart(nhietDoctx, {
         type: 'line',
@@ -67,7 +74,25 @@
                 backgroundColor: ['rgb(204, 0, 0)','rgb(204, 0, 0)'],
                 borderColor: ['rgb(255, 204, 204)','rgb(255, 204, 204)'],
                 borderWidth: 1}]
-        },options: {scales: {y: {beginAtZero: true}}}
+            },options: {
+                responsive: false,
+                scales: {x: {ticks: {font: {size: 9}}}}
+            }
+    });
+    const tinhTrangBom = new Chart(tinhTrangBomctx, {
+        type: 'line',
+        data: {
+            labels: doAmDatTimes, //thoi gian
+            datasets: [{
+                label: 'Trạng thái bơm',
+                data: bomDatas,//du lieu
+                backgroundColor: ['rgb(102, 204, 0)','rgb(102, 204, 0)'],
+                borderColor: ['rgb(153, 204, 0)','rgb(153, 204, 0)'],
+                borderWidth: 1}]
+            },options: {
+                responsive: false,
+                scales: {x: {ticks: {font: {size: 9}}}}
+            }
     });
 </script>
 
