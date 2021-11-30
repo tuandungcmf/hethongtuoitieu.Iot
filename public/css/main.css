@@ -13,3 +13,23 @@ footer{
     margin-bottom: 0;
 }
 .mga{margin:0 auto}
+.item{
+    width: 300px;
+    padding: 30px;
+    font-size: 24px;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+.item button{
+    margin: 5px
+}
+.featured strong{
+    font-weight: bold;
+    color: red;
+    background-color: #faf67a;
+    padding: 6px 12px;
+    border-radius: 50%;
+}
+.featured p{
+    line-height: 35px;
+}

@@ -41,6 +41,15 @@ app.get('/', function(req, res) {
 	res.end();
 });
 
+app.get('/resource', function(req, res) {
+	if (req.session.loggedin) {
+		res.render('resource',{name: req.session.username});
+	} else {
+		res.render('login');
+	}
+	res.end();
+});
+
 //GET /real?1547368
 app.get('/real', async(req, res) => {
 	// khởi tạo đối tượng thời gian
@@ -56,7 +65,7 @@ app.get('/real', async(req, res) => {
 	var lastDayOfMonth = new Date(date_ob.getFullYear(), date_ob.getMonth()+1, 0);
 
 	let startDate = year+"-"+month+"-01";
-	let endDate =year+"-"+month+"-"+lastDayOfMonth;
+	let endDate =year+"-"+month+"-"+lastDayOfMonth.getDate();
 	let channelId= 1547368 //req.query.channelId;
 
 	if (req.session.loggedin) {
