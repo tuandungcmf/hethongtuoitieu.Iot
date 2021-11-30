@@ -1,3 +1,4 @@
+const cfg = require('./config/config.global');
 const axios = require("axios");
 const moment = require("moment");
 const lodash = require('lodash');
@@ -33,7 +34,7 @@ management.get('/electric', async(req, res) => {
     if (req.session.loggedin) {
         try {
 			const response = await axios({
-				url: "https://api.thingspeak.com/channels/"+channelId+"/fields/4.json?api_key=P2HTP6ZOLAC6NJ5A&start="+startDate+" 00:00:00&end="+endDate+" 24:00:00&timezone=Asia/Bangkok",
+				url: cfg.server+"channels/"+channelId+"/fields/4.json?api_key="+cfg.api+"&start="+startDate+" 00:00:00&end="+endDate+" 24:00:00&timezone=Asia/Bangkok",
 				method: "get",
 			});
 			res.render('electric', {
@@ -71,7 +72,7 @@ management.get('/water', async(req, res) => {
     if (req.session.loggedin) {
         try {
 			const response = await axios({
-				url: "https://api.thingspeak.com/channels/"+channelId+"/fields/4.json?api_key=P2HTP6ZOLAC6NJ5A&start="+startDate+" 00:00:00&end="+endDate+" 24:00:00&timezone=Asia/Bangkok",
+				url: cfg.server+"channels/"+channelId+"/fields/4.json?api_key="+cfg.api+"&start="+startDate+" 00:00:00&end="+endDate+" 24:00:00&timezone=Asia/Bangkok",
 				method: "get",
 			});
 			res.render('water', {

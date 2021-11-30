@@ -1,3 +1,4 @@
+const cfg = require('./config/config.global');
 const express = require("express");
 const session = require('express-session')
 const bodyParser = require('body-parser') 
@@ -71,7 +72,7 @@ app.get('/real', async(req, res) => {
 	if (req.session.loggedin) {
 		try {
 			const response = await axios({
-				url: "https://api.thingspeak.com/channels/"+channelId+"/feeds.json?api_key=P2HTP6ZOLAC6NJ5A&start="+startDate+" 00:00:00&end="+endDate+" 24:00:00&timezone=Asia/Bangkok",
+				url: cfg.server+"channels/"+channelId+"/feeds.json?api_key="+cfg.api+"&start="+startDate+" 00:00:00&end="+endDate+" 24:00:00&timezone=Asia/Bangkok",
 				method: "get",
 			});
 			var feeds = response.data.feeds
