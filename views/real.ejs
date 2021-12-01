@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col p-3">
-        <h2>DỮ LIỆU TRONG THÁNG <%= month %></h2>
+        <h2 class="text-center">DỮ LIỆU TRONG THÁNG <%= month %></h2>
     </div>
     
 </div>
@@ -24,7 +24,7 @@
 </div>
 
 <script>
-    let doAmDatTimes = [<% feeds.forEach(function(feed) { %>'<%= moment(feed.created_at).format('D/M/YY HH:MM') %>',<% }); %>];
+    let doAmDatTimes = [<% feeds.forEach(function(feed) { %>'<%= moment(feed.created_at).format('D/M/YY h:mm:ss') %>',<% }); %>];
     let doAmDatDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field1 %>',<% }); %>];
     let doAmKkDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field2 %>',<% }); %>];
     let nhietDoDatas = [<% feeds.forEach(function(feed) { %>'<%= feed.field3 %>',<% }); %>];
@@ -46,7 +46,7 @@
                 borderWidth: 1}]
             },options: {
                 responsive: false,
-                scales: {x: {ticks: {font: {size: 9}}}}
+                scales: {x: {ticks: {font: {size: 8}}}}
             }
     });
     const doAmKk = new Chart(doAmKkctx, {
@@ -61,7 +61,7 @@
                 borderWidth: 1}]
         },options: {
             responsive: false,
-            scales: {x: {ticks: {font: {size: 9}}}}
+            scales: {x: {ticks: {font: {size: 8}}}}
         }
     });
     const nhietdokk = new Chart(nhietDoctx, {
@@ -76,7 +76,7 @@
                 borderWidth: 1}]
             },options: {
                 responsive: false,
-                scales: {x: {ticks: {font: {size: 9}}}}
+                scales: {x: {ticks: {font: {size: 8}}}}
             }
     });
     const tinhTrangBom = new Chart(tinhTrangBomctx, {
@@ -91,7 +91,7 @@
                 borderWidth: 1}]
             },options: {
                 responsive: false,
-                scales: {x: {ticks: {font: {size: 9}}}}
+                scales: {x: {ticks: {font: {size: 8}}}}
             }
     });
 </script>
