@@ -1,61 +1,16 @@
 <%- include("_header_page") -%>
 
 <%
-
-    function getHourFormatFromMilliSeconds(millisec) {
-        var seconds = (millisec / 1000).toFixed(0);
-        var minutes = Math.floor(Number(seconds) / 60).toString();
-        let hours;
-        if (Number(minutes) > 59) {
-            hours = Math.floor(Number(minutes) / 60);
-            hours = (hours >= 10) ? hours : "0" + hours;
-            minutes = (Number(minutes) - (hours * 60)).toString();
-            minutes = (Number(minutes) >= 10) ? minutes : "0" + minutes;
-        }
-
-        seconds = Math.floor(Number(seconds) % 60).toString();
-        seconds = (Number(seconds) >= 10) ? seconds : "0" + seconds;
-        if (!hours) {
-            hours = "00";
-        }
-        if (!minutes) {
-            minutes = "00";
-        }
-        if (!seconds) {
-            seconds = "00";
-        }
-        return hours; //+ ":" + minutes + ":" + seconds;
-    }
-
     let motorTurnedOnCount = 0; //số lần máy bơm được bật
-    let motorTurningON=0;
-    let motorTurningON_Time = "";
-    let motorTurningOFF=0;
-    let motorTurningOFF_Time = "";
-    let motorOffCountTime=[];
-    let motorOnCountTime =[];
-
     feeds.forEach(obj => {
-        if(obj.field4=="0"){
-            
-            motorTurningON =0;
-            motorTurningOFF=1;
-            motorTurningOFF_Time = obj.created_at;
-        }else{
-            if(motorTurningOFF=1){
-                date2=moment(obj.created_at);
-                date1=moment(motorTurningOFF_Time);
-                motorOnCountTime.push(date2.diff(date1));
-            }
-            motorTurningON =1;
-            motorTurningON_Time = obj.created_at;
-            motorTurningOFF=0;
+        if(obj.field4!="0"){
             motorTurnedOnCount++;
         }
     })
 
-    var timeCurrentMonth = getHourFormatFromMilliSeconds(lodash.sum(motorOnCountTime));
-    var waterCurrentMonth = (timeCurrentMonth * 72)/1000; // 1,2 lit x 60phut = 72
+    var secondCurrentMonth = motorTurnedOnCount * 30; //30s
+    var hourCurrentMonth = secondCurrentMonth * 0.000278;
+    var waterCurrentMonth = (hourCurrentMonth * 72)/1000; // 1,2 lit x 60phut = 72;
 %>
 <div class="row justify-content-start m-3">
     <div class="col-4">
@@ -65,7 +20,7 @@
         <p class="h3">THÔNG TIN SỬ DỤNG NƯỚC TRONG THÁNG</p>
         <p class="">
             Số lần máy bơm được bật trong tháng này: <strong><%= motorTurnedOnCount %></strong> <br>
-            Tổng thời gian bơm tháng này:  <strong><%= timeCurrentMonth %> giờ </strong><br>
+            Tổng thời gian bơm tháng này:  <strong><%= hourCurrentMonth %> giờ </strong><br>
             Tổng lượng nước sử dụng tháng này:  <strong><%= waterCurrentMonth %> ㎥ </strong>(~1,2 lít/phút)<br>
         </p>
         <p class="text-right">
