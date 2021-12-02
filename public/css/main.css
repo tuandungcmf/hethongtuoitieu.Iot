@@ -33,3 +33,7 @@ footer{
 .featured p{
     line-height: 35px;
 }
+
+.row a.btn{
+    margin-right: 10px;
+}
