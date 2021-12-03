@@ -8,9 +8,9 @@
 #include <WiFiUdp.h>
 
 /** THÔNG TIN KẾT NỐI INTERNET */
-String apiKey = "02PAG46E5D44JXBX";   // Mã API của ThingSpeak
-const char *ssid = "NhaTro_HieuNga";     // Tên wifi , VD: “Wifi vp”
-const char *pass = "12345678";         // Mật khẩu wifi
+String apiKey = "API_KEY";   // Mã API của ThingSpeak
+const char *ssid = "tên_wifi";     // Tên wifi , VD: “Wifi vp”
+const char *pass = "mật_khẩu";         // Mật khẩu wifi
 const char* server = "api.thingspeak.com";
 
 //Giờ bắt đầu và dừng tưới buổi sáng trong ngày (giờ)
