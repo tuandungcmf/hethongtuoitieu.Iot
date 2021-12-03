@@ -2,7 +2,7 @@
 <%
     let motorTurnedOnCount = 0; //số lần máy bơm được bật
     feeds.forEach(obj => {
-        if(obj.field4!="0"){
+        if(obj.field4=="1"){
             motorTurnedOnCount++;
         }
     })
