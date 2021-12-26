@@ -37,3 +37,6 @@ footer{
 .row a.btn{
     margin-right: 10px;
 }
+.card{
+    border-left: 4px solid #430202;
+}
