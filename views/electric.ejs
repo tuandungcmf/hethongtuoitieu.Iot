@@ -10,7 +10,6 @@
     var WhTokWh= electricUsedCurrentMonth/1000;
     electricUsedCurrentMonth = +(Math.round(electricUsedCurrentMonth + "e+2")  + "e-2");
     var priceTotal = 0;
-    console.log("WhTokWh", +(Math.round(WhTokWh + "e+2")  + "e-2") );
 
     if(WhTokWh >= 401){
         var val1 = WhTokWh - 400;
