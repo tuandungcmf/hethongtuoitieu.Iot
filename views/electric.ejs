@@ -8,23 +8,48 @@
     })
     var electricUsedCurrentMonth = 12 * 0.6 * (30 * motorTurnedOnCount / 3600);
     var WhTokWh= electricUsedCurrentMonth/1000;
-
-    /**
-    Bậc 1: Từ 0-50kWh: 1.678 đồng/kWh (giá cũ là 1.549 đồng/kWh).
-    Bậc 2: Từ 51 – 100 kWh: 1.734 đồng/kWh (giá cũ là 1.600 đồng/kWh).
-    Bậc 3: Từ 101 – 200 kWh: 2.014 đồng/kWh (giá cũ là 1.858 đồng/kWh).
-    Bậc 4: Từ 201 – 300 kWh: 2.536 đồng/kWh (giá cũ là 2.340 đồng/kWh).
-    **/
+    electricUsedCurrentMonth = +(Math.round(electricUsedCurrentMonth + "e+2")  + "e-2");
     var priceTotal = 0;
-    if(WhTokWh<=50){
-        priceTotal = priceTotal*1678; 
-    }else if(50 < WhTokWh <= 100){
-        priceTotal = priceTotal*1734; 
-    }else if( 100 < WhTokWh <=200){
-        priceTotal = priceTotal*2014; 
-    }else{
-        priceTotal = priceTotal*2536; 
+    console.log("WhTokWh", +(Math.round(WhTokWh + "e+2")  + "e-2") );
+
+    if(WhTokWh >= 401){
+        var val1 = WhTokWh - 400;
+        priceTotal  = val1 * 2927;
+        priceTotal += 100*2834;
+        priceTotal += 100*2536;
+        priceTotal += 100*2014;
+        priceTotal += 50*1734;
+        priceTotal += 50*1678;
+    }else if(301 <= WhTokWh){
+        var val = WhTokWh - 300;
+        priceTotal  = val*2834;
+        priceTotal += 100*2536;
+        priceTotal += 100*2014;
+        priceTotal += 50*1734;
+        priceTotal += 50*1678;
+    }else if(201 <= WhTokWh){
+        var val = WhTokWh - 200;
+        priceTotal  = val*2536;
+        priceTotal += 100*2014;
+        priceTotal += 50*1734;
+        priceTotal += 50*1678;
+    }else if(101 <= WhTokWh){
+        var val = WhTokWh - 100;
+        priceTotal  = val*2014;
+        priceTotal += 50*1734;
+        priceTotal += 50*1678;
+    }else if(51 <= WhTokWh){
+        var val = WhTokWh - 50;
+        priceTotal  = val*1734;
+        priceTotal += 50*1678;
+    }else if(0 <= WhTokWh){
+        priceTotal = val*1678;
     }
+    if(isNaN(priceTotal)){
+        priceTotal=0;
+    }
+  
+    WhTokWh = +(Math.round(WhTokWh + "e+2")  + "e-2");
 %>
 <div class="row justify-content-start m-3">
     <div class="col-4">
@@ -33,11 +58,14 @@
     <div class="col-8 featured">
         <p class="h4">THÔNG TIN ĐIỆN TIÊU DÙNG CHO HỆ THỐNG TRONG THÁNG</p>
         <p>
-            Tổng lượng điện tiêu thụ trong tháng đến nay: <strong><%= electricUsedCurrentMonth %> Wh</strong><br>
+            Tổng lượng điện tiêu thụ trong tháng đến nay: <strong><%= electricUsedCurrentMonth %> Wh ~ <%= WhTokWh %>kWh</strong><br>
             Số tiền điện tương ứng là : <strong><%= priceTotal %> VNĐ</strong><br>
         </p>
         <p class="text-right">
-            <em>Thông tin mang tính chất ước lượng !</em>
+            <em>Thông tin mang tính chất ước lượng dựa trên giá điện sinh hoạt của EVN !</em>
+            <div>
+                <img src="../imgs/gia-dien.png" width="100%"/>
+            </div>
         </p>
     </div>
 </div>

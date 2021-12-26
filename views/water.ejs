@@ -10,7 +10,9 @@
 
     var secondCurrentMonth = motorTurnedOnCount * 30; //30s
     var hourCurrentMonth = secondCurrentMonth * 0.000278;
+    hourCurrentMonth = +(Math.round(hourCurrentMonth + "e+2")  + "e-2");
     var waterCurrentMonth = (hourCurrentMonth * 72)/1000; // 1,2 lit x 60phut = 72;
+    waterCurrentMonth = +(Math.round(waterCurrentMonth + "e+2")  + "e-2");
 %>
 <div class="row justify-content-start m-3">
     <div class="col-4">
@@ -24,7 +26,10 @@
             Tổng lượng nước sử dụng tháng này:  <strong><%= waterCurrentMonth %> ㎥ </strong>(~1,2 lít/phút)<br>
         </p>
         <p class="text-right">
-            <em>Thông tin mang tính chất ước lượng !</em>
+            <em>Thông tin mang tính chất ước lượng dựa trên đơn giá chung!</em>
+            <div>
+                <img class="image" src="../imgs/gia-nuoc.png" width="90%"/>
+            </div>
         </p>
     </div>
     
