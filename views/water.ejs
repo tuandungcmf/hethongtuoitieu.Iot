@@ -21,9 +21,14 @@
     <div class="col-8 featured">
         <p class="h3">THÔNG TIN SỬ DỤNG NƯỚC TRONG THÁNG</p>
         <p class="">
-            Số lần máy bơm được bật trong tháng này: <strong><%= motorTurnedOnCount %></strong> <br>
+            Số lần máy bơm được bật trong tháng này: <strong><%= motorTurnedOnCount %></strong> (Dữ liệu từ thinkspeak)<br>
             Tổng thời gian bơm tháng này:  <strong><%= hourCurrentMonth %> giờ </strong><br>
             Tổng lượng nước sử dụng tháng này:  <strong><%= waterCurrentMonth %> ㎥ </strong>(~1,2 lít/phút)<br>
+        </p>
+        <p style="background-color: mistyrose;padding: 5px;font-style: italic;">
+            <span>Lượng nước sử dụng được tính dựa vào:<br></span>
+            <span>Mỗi lần bơm với 30s = 0,5 phút ⋍ 0,6 lít<br></span>
+            <span>Lượng nước sử dụng = (0,6 lít x số lần bơm được bật) </span>
         </p>
         <p class="text-right">
             <em>Thông tin mang tính chất ước lượng dựa trên đơn giá chung!</em>

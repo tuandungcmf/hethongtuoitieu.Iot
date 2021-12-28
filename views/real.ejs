@@ -35,7 +35,7 @@
     const nhietDoctx = document.getElementById('nhiet-do-kk');
     const tinhTrangBomctx = document.getElementById('trang-thai-bom');
     const doAmDat = new Chart(doAmDatctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: doAmDatTimes, //thoi gian
             datasets: [{
@@ -50,7 +50,7 @@
             }
     });
     const doAmKk = new Chart(doAmKkctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: doAmDatTimes, //thoi gian
             datasets: [{
@@ -65,7 +65,7 @@
         }
     });
     const nhietdokk = new Chart(nhietDoctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: doAmDatTimes, //thoi gian
             datasets: [{
@@ -80,7 +80,7 @@
             }
     });
     const tinhTrangBom = new Chart(tinhTrangBomctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: doAmDatTimes, //thoi gian
             datasets: [{

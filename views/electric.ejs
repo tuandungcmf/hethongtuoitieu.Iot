@@ -6,7 +6,7 @@
             motorTurnedOnCount++;
         }
     })
-    var electricUsedCurrentMonth = 12 * 0.6 * (30 * motorTurnedOnCount / 3600);
+    var electricUsedCurrentMonth = 3 * (30 * motorTurnedOnCount / 3600);
     var WhTokWh= electricUsedCurrentMonth/1000;
     electricUsedCurrentMonth = +(Math.round(electricUsedCurrentMonth + "e+2")  + "e-2");
     var priceTotal = 0;
@@ -57,8 +57,19 @@
     <div class="col-8 featured">
         <p class="h4">THÔNG TIN ĐIỆN TIÊU DÙNG CHO HỆ THỐNG TRONG THÁNG</p>
         <p>
+            Số lần máy bơm được bật trong tháng này: <strong><%= motorTurnedOnCount %></strong> (Dữ liệu từ thinkspeak)<br>
             Tổng lượng điện tiêu thụ trong tháng đến nay: <strong><%= electricUsedCurrentMonth %> Wh ~ <%= WhTokWh %>kWh</strong><br>
             Số tiền điện tương ứng là : <strong><%= priceTotal %> VNĐ</strong><br>
+        </p>
+        <p style="background-color: mistyrose;padding: 5px;font-style: italic;">
+            Công thức tính lượng điện tiêu thụ:<br>
+            Tổng lượng điện tiêu thụ (Wh) = 3 * (30 * SoLanBatBom / 3600)<br>
+            Trong đó:<br>
+            3  ➡ Công suất của bơm theo nhà sản xuất<br>
+            (30 * SoLanBatBom / 3600) ➡ Tổng Thời gian bơm đơn vị theo giờ<br>
+            > 30 là Giá trị biểu thị thời gian 1 lần bơm là 30 giây<br>
+            > 3600 : 1 giờ có 3600 giây<br>
+            > SoLanBatBom ➡ Số lần máy bơm được bật trong tháng<br>
         </p>
         <p class="text-right">
             <em>Thông tin mang tính chất ước lượng dựa trên giá điện sinh hoạt của EVN !</em>
